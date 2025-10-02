@@ -5,7 +5,11 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.28%2B-red)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
+## 🚀 [**Live Demo**](https://anomaly-d.streamlit.app/) 
+
 An intelligent anomaly detection system for network traffic using machine learning techniques. This project employs **Isolation Forest** algorithm to identify unusual patterns in network traffic data that may indicate security threats, system failures, or other anomalous behavior.
+
+**Try it now:** [https://anomaly-d.streamlit.app/](https://anomaly-d.streamlit.app/)
 
 ## 📋 Table of Contents
 
@@ -66,15 +70,15 @@ The project uses the **EC2 Network Traffic dataset** from the Numenta Anomaly Be
 ```
 Anomaly_Detection_in_Network_Traffic/
 │
-├── Anomaly_Detection_in_Network_Traffic.ipynb  # Main analysis notebook
-├── Anomaly_Detection_Training.ipynb            # Model training notebook
-├── app.py                                      # Streamlit web application
-├── deployment.py                               # Flask API deployment
-├── ec2_network_in_257a54.csv                  # Dataset
-├── isolation_forest_model.joblib              # Trained model
-├── scaler.joblib                              # Fitted StandardScaler
-├── requirements.txt                           # Python dependencies
-└── README.md                                  # Project documentation
+├── 📊 Anomaly_Detection_in_Network_Traffic.ipynb  # Complete analysis & EDA notebook
+├── 🏋️ Anomaly_Detection_Training.ipynb            # Simplified model training
+├── 🌐 app.py                                      # Streamlit web application
+├── 🚀 deployment.py                               # Flask API deployment
+├── 📈 ec2_network_in_257a54.csv                  # NAB dataset (4,033 records)
+├── 🤖 isolation_forest_model.joblib              # Trained Isolation Forest model
+├── ⚖️ scaler.joblib                              # Fitted StandardScaler
+├── 📦 requirements.txt                           # Python dependencies
+└── 📖 README.md                                  # Project documentation
 ```
 
 ## 🚀 Installation
@@ -152,6 +156,10 @@ joblib.dump(scaler, 'scaler.joblib')
 
 ### 2. Running the Streamlit App
 
+#### Option A: Use the Live Demo (Recommended)
+🌐 **[Try the live app here: https://anomaly-d.streamlit.app/](https://anomaly-d.streamlit.app/)**
+
+#### Option B: Run Locally
 Launch the interactive web application:
 
 ```bash
@@ -160,12 +168,14 @@ streamlit run app.py
 
 The app will open in your browser at `http://localhost:8501`
 
-**Features**:
-- Upload your own CSV files
-- Enter data manually
-- Use sample data for testing
-- View real-time anomaly detection results
-- Download results as CSV
+**App Features**:
+- 📤 Upload your own CSV files
+- ✏️ Enter data manually  
+- 📊 Use sample data for testing (default)
+- 📈 Interactive visualizations with Plotly
+- 📊 Real-time anomaly detection results
+- 📥 Download results as CSV
+- ℹ️ Comprehensive interpretation guide
 
 ### 3. Using the Flask API
 
@@ -234,11 +244,24 @@ After grid search optimization:
 
 ### Model Performance
 
-- **Training Data**: 80% of dataset (temporal split)
+- **Training Data**: 80% of dataset (temporal split to preserve time series structure)
 - **Test Data**: 20% of dataset
-- **Evaluation**: Visual inspection and F1-score with anomaly as positive class
+- **Model Type**: Unsupervised learning (no labeled anomalies required)
+- **Evaluation**: Visual inspection, anomaly score distribution, and F1-score optimization
+- **Hyperparameter Tuning**: GridSearchCV with custom F1-scorer for anomaly detection
 
 ## 🌐 Deployment
+
+### Live Deployment
+
+🌐 **Production App**: [https://anomaly-d.streamlit.app/](https://anomaly-d.streamlit.app/)
+
+The application is deployed on **Streamlit Cloud** and includes:
+- Real-time anomaly detection
+- Interactive visualizations
+- Sample data pre-loaded
+- CSV upload functionality
+- Results download capability
 
 ### Local Deployment
 
@@ -252,10 +275,13 @@ streamlit run app.py
 python deployment.py
 ```
 
-### Cloud Deployment
+### Cloud Deployment Options
 
-#### Option 1: Streamlit Cloud
+#### Option 1: Streamlit Cloud (Current Deployment)
 
+✅ **Already deployed at**: [https://anomaly-d.streamlit.app/](https://anomaly-d.streamlit.app/)
+
+To deploy your own:
 1. Push code to GitHub
 2. Visit [share.streamlit.io](https://share.streamlit.io)
 3. Connect repository and deploy
@@ -296,28 +322,41 @@ docker run -p 8501:8501 anomaly-detection
 
 ### Key Findings
 
-- Successfully detected anomalous traffic patterns
-- Low false positive rate with 'auto' contamination
-- Model generalizes well to unseen data
-- Fast inference time suitable for real-time monitoring
+- ✅ Successfully detected anomalous traffic patterns in EC2 network data
+- ✅ Low false positive rate with 'auto' contamination setting
+- ✅ Model generalizes well to unseen data with temporal split
+- ✅ Fast inference time suitable for real-time monitoring
+- ✅ Comprehensive EDA revealed seasonal patterns and trends
+- ✅ Hyperparameter tuning improved model performance
 
 ### Visualizations
 
 The project includes comprehensive visualizations:
 
-1. **Time Series Plot**: Network traffic over time with anomalies highlighted
-2. **Distribution Analysis**: Histogram of traffic patterns
-3. **Anomaly Scores**: Distribution of anomaly scores
-4. **Decomposition**: Trend, seasonal, and residual components
-5. **Autocorrelation**: Temporal dependencies in traffic
+1. **📈 Time Series Plot**: Network traffic over time with anomalies highlighted in red
+2. **📊 Distribution Analysis**: Histogram showing normal vs anomalous traffic patterns  
+3. **🎯 Anomaly Scores**: Distribution of decision function scores
+4. **🔄 Time Series Decomposition**: Trend, seasonal, and residual components
+5. **📈 Autocorrelation Plot**: Temporal dependencies in traffic patterns
+6. **📊 Rolling Statistics**: Moving averages and standard deviations
+7. **📦 Boxplot Analysis**: Outlier identification and quartile analysis
 
-### Example Output
+### Live Demo Results
 
+🌐 **Try it yourself**: [https://anomaly-d.streamlit.app/](https://anomaly-d.streamlit.app/)
+
+**Example Output from Sample Data**:
 ```
-Total Data Points: 796
-Normal Traffic: 783 (98.4%)
-Anomalies Detected: 13 (1.6%)
-Average Anomaly Score: 0.145
+📊 Analysis Results:
+├── Total Data Points: 1,000
+├── Normal Traffic: 982 (98.2%)
+├── Anomalies Detected: 18 (1.8%)
+└── Average Anomaly Score: 0.142
+
+🚨 Detected Anomalies:
+├── High traffic spikes (>15,000 bytes)
+├── Unusual low traffic periods (<500 bytes)  
+└── Sudden traffic pattern changes
 ```
 
 ## 🔮 Future Improvements
@@ -375,8 +414,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Bipul**
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+- 🌐 **Live Demo**: [https://anomaly-d.streamlit.app/](https://anomaly-d.streamlit.app/)
+- 💻 **GitHub**: [@bipul](https://github.com/bipul)
+- 📧 **Contact**: For questions or collaboration opportunities
 
 ## 🙏 Acknowledgments
 
@@ -394,10 +434,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 For questions or issues:
-- Open an issue on GitHub
-- Email: your.email@example.com
+- 🌐 **Try the Live Demo**: [https://anomaly-d.streamlit.app/](https://anomaly-d.streamlit.app/)
+- 💻 **Open an issue on GitHub**
+- 📧 **Contact the author for collaboration**
 
 ---
 
 **⭐ If you find this project helpful, please consider giving it a star!**
+
+**🚀 [Experience the live demo here!](https://anomaly-d.streamlit.app/)**
 
