@@ -173,7 +173,8 @@ def main():
     # Input method selection
     input_method = st.sidebar.radio(
         "Choose Input Method:",
-        ["📤 Upload CSV File", "✏️ Manual Input", "📊 Use Sample Data"]
+        ["📤 Upload CSV File", "✏️ Manual Input", "📊 Use Sample Data"],
+        index=2  # Default to "Use Sample Data"
     )
     
     df = None
